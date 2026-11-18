@@ -1,0 +1,1754 @@
+# BUILDFLOW – FINANCE & PAYROLL DASHBOARD
+## Complete Enterprise Finance, Payroll Processing, Supplier Invoice Management, Expense Approval and Payment Operations
+
+Build a complete, premium, production-style Finance & Payroll Dashboard for BuildFlow, a multi-tenant construction workforce management and site operations SaaS platform.
+
+IMPORTANT: Build this dashboard from scratch. Do not reuse the previous Company Admin, Site Manager, Supervisor or SaaS Super Admin dashboard layouts.
+
+This dashboard is for the finance department of a construction company.
+
+The Finance & Payroll department is responsible for:
+
+1. Employee payroll processing.
+2. Daily wage and labour payment calculations.
+3. Monthly salary calculations.
+4. Overtime and incentive calculations.
+5. Employee advances and loan deductions.
+6. Payroll verification and approval.
+7. Payslip generation.
+8. Salary payment processing and reconciliation.
+9. Supplier invoice management.
+10. Contractor invoice management.
+11. Purchase bill verification.
+12. Employee reimbursement management.
+13. Site expenses.
+14. Project budget monitoring.
+15. Financial reporting.
+16. Tax and statutory compliance.
+17. Financial audit records.
+
+Build a functional application, not just static dashboard screens.
+
+Use realistic construction-industry workflows and Indian financial context.
+
+Currency: INR (₹).
+
+All financial calculations must be accurate and traceable.
+
+---
+
+# 1. BUSINESS STRUCTURE AND ROLE CONFIGURATION
+
+BuildFlow supports small, medium and large construction companies.
+
+The Finance & Payroll dashboard must adapt dynamically to company size and assigned permissions.
+
+### Small companies
+
+A small construction company may have:
+
+- One Finance Manager.
+- One HR Executive.
+- One Company Admin.
+
+The Finance Manager may handle payroll, invoices, expenses and payment operations if authorized.
+
+Do not force companies to create separate finance and payroll accounts.
+
+### Medium companies
+
+Support:
+
+- Finance Manager.
+- Payroll Officer.
+- Accounts Executive.
+- Procurement Accounts Executive.
+- HR Manager.
+
+Each user should see the relevant modules according to permissions.
+
+### Large companies
+
+Support:
+
+- Finance Head.
+- Payroll Manager.
+- Payroll Officer.
+- Accounts Payable Manager.
+- Accounts Receivable Executive.
+- Project Accountant.
+- Tax and Compliance Officer.
+- Treasury / Payment Officer.
+- Internal Auditor.
+
+### Role and permission rules
+
+Company Admin must configure:
+
+- Finance roles.
+- Payroll roles.
+- Approval hierarchy.
+- Project financial access.
+- Site financial access.
+- Payroll visibility.
+- Salary information visibility.
+- Payment approval limits.
+- Invoice approval limits.
+- Export permissions.
+- Refund and adjustment permissions.
+
+A Finance Officer must not automatically have access to confidential employee HR records.
+
+A Payroll Officer must not automatically have permission to approve their own payroll.
+
+A person who creates a payment should not automatically be able to approve and release the same payment.
+
+Support configurable maker-checker workflows.
+
+---
+
+# 2. DESIGN AND VISUAL IDENTITY
+
+Create a premium enterprise finance application.
+
+Visual references:
+- Stripe Dashboard.
+- Modern accounting software.
+- Enterprise ERP finance modules.
+- Linear-style clean navigation.
+- Modern banking interfaces.
+
+Do not copy these products directly.
+
+### Colour system
+
+- Dark navy: #101F35
+- Primary blue: #2563EB
+- Background: #F5F7FA
+- Card background: #FFFFFF
+- Main text: #172B4D
+- Secondary text: #64748B
+- Success: #16A34A
+- Warning: #F59E0B
+- Danger: #DC2626
+- Purple: #7C3AED
+
+Typography: Inter.
+
+Use:
+- Professional financial tables.
+- Clear numbers and currency formatting.
+- Consistent status indicators.
+- Clean charts.
+- Subtle shadows.
+- Modern forms.
+- Proper spacing.
+- Lucide icons.
+
+Financial data must be easy to read.
+
+Do not overload the interface with charts and unnecessary cards.
+
+---
+
+# 3. APPLICATION SHELL AND RESPONSIVE DESIGN
+
+Create a complete responsive application shell.
+
+### Desktop
+
+- Collapsible left sidebar.
+- Top navigation.
+- Company and branch selector.
+- Project filter.
+- Financial period selector.
+- Notifications.
+- User profile.
+- Main workspace.
+
+### Tablet
+
+- Collapsible sidebar.
+- Responsive tables.
+- Responsive charts.
+- Filter drawer.
+
+### Mobile
+
+Finance users may need to review approvals and payments from mobile.
+
+Build:
+- Compact header.
+- Bottom navigation for important sections.
+- Mobile-friendly financial summary cards.
+- Stacked invoice records.
+- Search and filter drawers.
+- Full-screen payment forms.
+- Touch-friendly approval actions.
+- Secure confirmation screens.
+
+Do not merely shrink desktop tables.
+
+Avoid horizontal overflow on 360px, 390px and 430px screens.
+
+---
+
+# 4. SIDEBAR NAVIGATION
+
+Create the following sections.
+
+## FINANCE OVERVIEW
+1. Finance Dashboard
+2. Financial Overview
+3. Project Budgets
+4. Cash Flow
+
+## PAYROLL MANAGEMENT
+5. Payroll Overview
+6. Employee Payroll
+7. Labour Wages
+8. Payroll Processing
+9. Overtime & Incentives
+10. Advances & Loans
+11. Payslips
+12. Salary Payments
+
+## ACCOUNTS PAYABLE
+13. Supplier Invoices
+14. Purchase Bills
+15. Contractor Payments
+16. Employee Reimbursements
+17. Site Expenses
+
+## FINANCIAL OPERATIONS
+18. Payment Processing
+19. Payment Approvals
+20. Transactions
+21. Bank Reconciliation
+
+## TAX & COMPLIANCE
+22. Statutory Compliance
+23. Tax Records
+24. Payroll Compliance
+25. Financial Documents
+
+## REPORTS
+26. Payroll Reports
+27. Expense Reports
+28. Project Cost Reports
+29. Supplier Reports
+30. Financial Statements
+
+## ADMINISTRATION
+31. Approval Workflows
+32. Finance Roles & Permissions
+33. Finance Settings
+34. Audit Logs
+
+Only show modules the logged-in user is authorized to access.
+
+---
+
+# 5. FINANCE DASHBOARD – OVERVIEW
+
+Create the main finance dashboard.
+
+### Header
+
+Display:
+
+Good morning, Finance Team.
+
+Company: ABC Construction Pvt Ltd.
+
+Financial Year: 2026–2027.
+
+Period: November 2026.
+
+Allow selection of:
+- Company branch.
+- Project.
+- Site.
+- Financial year.
+- Month.
+- Custom date range.
+
+### Financial KPI cards
+
+Display:
+
+1. Total Project Budget.
+2. Total Project Expenses.
+3. Available Budget.
+4. Payroll Payable.
+5. Supplier Payables.
+6. Contractor Payables.
+7. Pending Reimbursements.
+8. Payments Pending Approval.
+9. Total Payments Made.
+10. Outstanding Invoices.
+
+Use realistic sample figures.
+
+Example:
+
+- Total Project Budget: ₹5.2 Cr.
+- Total Expenses: ₹2.8 Cr.
+- Available Budget: ₹2.4 Cr.
+- Payroll Payable: ₹18.5 L.
+- Supplier Payables: ₹12.4 L.
+- Contractor Payables: ₹8.2 L.
+- Pending Reimbursements: ₹1.25 L.
+- Payments Pending Approval: ₹6.8 L.
+
+These figures are sample data, not live company finances.
+
+### Financial charts
+
+Create:
+
+1. Monthly expenses.
+2. Payroll vs material costs.
+3. Project budget vs actual spending.
+4. Supplier payments.
+5. Contractor payouts.
+6. Cash inflow and outflow.
+7. Outstanding payables.
+
+### Expense distribution
+
+Break expenses into:
+
+- Employee salaries.
+- Labour wages.
+- Overtime.
+- Material purchases.
+- Contractor invoices.
+- Equipment rentals.
+- Equipment maintenance.
+- Site operations.
+- Transportation.
+- Employee reimbursements.
+- Other expenses.
+
+### Finance action centre
+
+Display:
+
+- Payroll awaiting calculation.
+- Payroll awaiting approval.
+- Payroll ready for payment.
+- Supplier invoices awaiting review.
+- Contractor invoices awaiting approval.
+- Reimbursements pending approval.
+- Payments awaiting release.
+- Failed transactions.
+- Bank reconciliation mismatches.
+- Statutory compliance deadlines.
+
+Every alert should open the corresponding record.
+
+---
+
+# 6. PAYROLL OVERVIEW
+
+Create a dedicated payroll overview page.
+
+Display:
+
+- Total employees.
+- Total labour workforce.
+- Monthly payroll amount.
+- Daily wage payable.
+- Overtime payable.
+- Advances outstanding.
+- Deductions.
+- Payroll processed.
+- Payroll pending approval.
+- Payroll paid.
+- Payroll on hold.
+
+### Workforce payroll categories
+
+Support:
+
+- Monthly salaried employees.
+- Daily wage workers.
+- Hourly workers.
+- Weekly wage workers.
+- Piece-rate workers.
+- Contractual employees.
+- Temporary labour.
+- Project-based employees.
+
+Different worker types must use different calculation rules.
+
+### Payroll dashboard filters
+
+- Company branch.
+- Department.
+- Project.
+- Site.
+- Employee category.
+- Worker type.
+- Payroll period.
+- Payroll status.
+
+Do not show confidential salary information to users without payroll permissions.
+
+---
+
+# 7. EMPLOYEE PAYROLL MANAGEMENT
+
+Create an employee payroll directory.
+
+Columns:
+
+- Employee ID.
+- Employee name.
+- Department.
+- Designation.
+- Employment type.
+- Salary structure.
+- Assigned project.
+- Payroll period.
+- Gross earnings.
+- Deductions.
+- Net payable.
+- Payroll status.
+
+### Employee payroll profile
+
+Provide tabs:
+
+1. Overview.
+2. Salary Structure.
+3. Earnings.
+4. Deductions.
+5. Advances.
+6. Attendance Summary.
+7. Payslips.
+8. Payment History.
+
+Display:
+- Basic salary.
+- HRA.
+- Other allowances.
+- Incentives.
+- Approved overtime.
+- Reimbursements.
+- Authorized deductions.
+- Statutory deductions, where applicable.
+- Net salary.
+
+Salary changes must have effective dates and approval history.
+
+Preserve historical salary structures.
+
+Do not overwrite previous payroll calculations when a salary changes.
+
+---
+
+# 8. LABOUR WAGE MANAGEMENT
+
+This module is specific to construction companies.
+
+Build a dedicated labour wage calculation workspace.
+
+### Supported wage types
+
+- Daily wage.
+- Hourly wage.
+- Weekly wage.
+- Monthly wage.
+- Piece-rate wage.
+- Task-based payment.
+
+### Worker information
+
+- Worker ID.
+- Name.
+- Trade.
+- Skill category.
+- Employment type.
+- Wage type.
+- Agreed wage rate.
+- Assigned project.
+- Assigned site.
+- Supervisor.
+- Payroll period.
+
+### Attendance integration
+
+Use approved attendance records from BuildFlow.
+
+Consider:
+- Present days.
+- Half days.
+- Approved leave treatment.
+- Approved overtime.
+- Approved absence corrections.
+- Worker site transfers.
+- Approved work output, where applicable.
+
+### Calculation examples
+
+Daily wage:
+
+Approved payable days × agreed daily rate.
+
+Hourly wage:
+
+Approved payable hours × agreed hourly rate.
+
+Piece-rate:
+
+Approved quantity × agreed piece-rate.
+
+Show calculation breakdowns.
+
+Never use unverified attendance in final payroll.
+
+### Site transfer handling
+
+A worker may move from Site A to Site B during the payroll period.
+
+Allocate wage cost to the correct project/site using approved assignment and attendance history.
+
+Do not allocate the full monthly wage to the final site automatically.
+
+---
+
+# 9. PAYROLL PROCESSING ENGINE
+
+Create a complete payroll processing workflow.
+
+This is one of the most important parts of the entire dashboard.
+
+### Payroll processing workflow
+
+Step 1: Select payroll period.
+
+Step 2: Select company branch, department or project if applicable.
+
+Step 3: Fetch eligible employees and workers.
+
+Step 4: Retrieve approved attendance records.
+
+Step 5: Retrieve effective salary and wage structures.
+
+Step 6: Retrieve approved overtime and incentives.
+
+Step 7: Retrieve authorized advances and deductions.
+
+Step 8: Retrieve approved reimbursements, where configured.
+
+Step 9: Calculate gross earnings.
+
+Step 10: Calculate deductions.
+
+Step 11: Calculate net payable.
+
+Step 12: Identify exceptions.
+
+Step 13: Payroll Officer reviews calculations.
+
+Step 14: Authorized manager approves payroll.
+
+Step 15: Payroll is locked and finalized.
+
+Step 16: Payment batch is created.
+
+Step 17: Authorized finance user releases payment.
+
+Step 18: Payment results are reconciled.
+
+Step 19: Payslips are generated.
+
+### Payroll run statuses
+
+- Draft.
+- Calculating.
+- Calculation Completed.
+- Exceptions Found.
+- Under Review.
+- Pending Approval.
+- Approved.
+- Locked.
+- Payment Processing.
+- Partially Paid.
+- Paid.
+- Failed.
+- Cancelled.
+
+### Payroll calculation interface
+
+Create a professional multi-step payroll wizard.
+
+Step 1: Payroll period.
+
+Step 2: Employee and worker selection.
+
+Step 3: Attendance and wage data.
+
+Step 4: Earnings and deductions.
+
+Step 5: Exceptions.
+
+Step 6: Calculation summary.
+
+Step 7: Approval submission.
+
+### Payroll exception centre
+
+Flag:
+
+- Missing attendance.
+- Unapproved overtime.
+- Missing salary structure.
+- Salary changes during the period.
+- Duplicate worker records.
+- Missing bank information.
+- Negative net pay.
+- Unexpected deductions.
+- Site assignment conflicts.
+- Unverified attendance.
+- Incomplete employee records.
+
+Do not silently ignore exceptions.
+
+The payroll officer must resolve or explicitly handle exceptions according to company policy.
+
+### Payroll calculation transparency
+
+For every employee show:
+
+- Payable days/hours.
+- Base earnings.
+- Overtime earnings.
+- Incentives.
+- Allowances.
+- Reimbursements.
+- Deductions.
+- Statutory deductions.
+- Net payable.
+
+Provide a detailed calculation breakdown.
+
+### Payroll snapshot
+
+After final approval:
+- Preserve the calculation inputs.
+- Preserve the applicable salary and wage versions.
+- Preserve attendance references.
+- Preserve approval records.
+- Preserve the final payroll totals.
+
+Any correction after locking must follow a controlled adjustment or reversal process.
+
+---
+
+# 10. OVERTIME AND INCENTIVES
+
+Create a dedicated overtime and incentives module.
+
+### Overtime records
+
+Display:
+
+- Employee.
+- Project.
+- Site.
+- Date.
+- Regular working hours.
+- Reported overtime.
+- Approved overtime.
+- Overtime category.
+- Applicable rate.
+- Amount.
+- Approval status.
+
+### Overtime workflow
+
+Employee or Supervisor submits overtime.
+
+↓
+
+Site Manager verifies.
+
+↓
+
+HR or authorized manager approves.
+
+↓
+
+Finance calculates payable overtime.
+
+### Incentive management
+
+Support:
+- Productivity incentives.
+- Project completion bonuses.
+- Attendance incentives.
+- Performance incentives.
+- Piece-rate bonuses.
+
+Each incentive must have:
+- Rule.
+- Eligibility.
+- Amount or calculation basis.
+- Effective period.
+- Approver.
+- Supporting evidence where required.
+
+Do not automatically treat time beyond scheduled working hours as approved overtime.
+
+Overtime rules must be configurable and reviewed against applicable labour laws.
+
+---
+
+# 11. ADVANCES AND LOANS
+
+Create an employee advance and loan management module.
+
+Display:
+- Employee.
+- Advance ID.
+- Request date.
+- Requested amount.
+- Approved amount.
+- Disbursed amount.
+- Outstanding amount.
+- Repayment schedule.
+- Monthly deduction.
+- Status.
+
+### Workflow
+
+Employee requests advance.
+
+↓
+
+HR or authorized manager reviews.
+
+↓
+
+Finance approves and disburses.
+
+↓
+
+Repayment deductions are applied in payroll according to approved terms and applicable law.
+
+### Advance statuses
+
+- Requested.
+- Under Review.
+- Approved.
+- Rejected.
+- Disbursed.
+- Partially Repaid.
+- Fully Repaid.
+- Cancelled.
+
+Show full transaction history.
+
+Never apply unapproved deductions to payroll.
+
+---
+
+# 12. PAYSLIP MANAGEMENT
+
+Create a payslip generation and distribution module.
+
+### Payslip contents
+
+- Company details.
+- Employee details.
+- Employee ID.
+- Payroll period.
+- Payable days.
+- Earnings.
+- Allowances.
+- Overtime.
+- Deductions.
+- Statutory contributions, where applicable.
+- Net salary.
+- Payment status.
+
+Support:
+- Individual payslip generation.
+- Bulk generation.
+- PDF export.
+- Secure employee access.
+- Payslip history.
+- Payslip correction records.
+
+Employees should only access their own payslips.
+
+Do not expose payslips through public URLs.
+
+---
+
+# 13. SALARY PAYMENT MANAGEMENT
+
+Separate payroll approval from actual payment.
+
+An approved payroll does not mean money has been transferred.
+
+Create a payment processing workspace.
+
+### Payment batch
+
+Display:
+
+- Payroll batch ID.
+- Payroll period.
+- Total employees.
+- Total payable amount.
+- Approved amount.
+- Payment method.
+- Bank or payment integration.
+- Payment status.
+
+### Payment statuses
+
+- Ready for Payment.
+- Awaiting Authorization.
+- Processing.
+- Partially Paid.
+- Paid.
+- Failed.
+- Reconciliation Pending.
+
+### Payment workflow
+
+Payroll Officer finalizes payroll.
+
+↓
+
+Authorized manager approves payment batch.
+
+↓
+
+Finance / Treasury user initiates payment.
+
+↓
+
+Payment provider or bank processes transactions.
+
+↓
+
+Transaction result is received.
+
+↓
+
+Finance reconciles successful and failed payments.
+
+### Payment records
+
+Display:
+
+- Employee.
+- Employee ID.
+- Net payable.
+- Payment reference.
+- Bank transfer status.
+- Transaction date.
+- Failure reason, if applicable.
+
+Never show a payment as successful until the bank or payment provider confirms it.
+
+Never store full bank credentials or sensitive payment authentication data in the frontend.
+
+---
+
+# 14. SUPPLIER INVOICE MANAGEMENT
+
+Build a complete accounts payable module for suppliers.
+
+This is a major part of construction finance.
+
+### Supplier invoice directory
+
+Columns:
+
+- Invoice ID.
+- Supplier name.
+- Supplier ID.
+- GSTIN, where applicable.
+- Purchase order ID.
+- Project.
+- Site.
+- Invoice date.
+- Due date.
+- Invoice amount.
+- Tax amount.
+- Total amount.
+- Payment status.
+
+### Supplier invoice details
+
+Display:
+
+- Supplier details.
+- Invoice details.
+- Purchase request reference.
+- Purchase order reference.
+- Material information.
+- Quantity.
+- Unit price.
+- Tax breakdown.
+- Total amount.
+- Uploaded invoice.
+- Delivery records.
+- Material receipt verification.
+- Approval history.
+- Payment history.
+
+### Invoice verification
+
+Create a three-way matching workflow where applicable:
+
+1. Purchase Order.
+2. Goods Receipt / Material Receipt.
+3. Supplier Invoice.
+
+Check:
+- Supplier identity.
+- Ordered quantity.
+- Received quantity.
+- Invoiced quantity.
+- Agreed unit price.
+- Tax amount.
+- Total amount.
+
+Flag:
+- Duplicate invoices.
+- Price mismatches.
+- Quantity mismatches.
+- Missing purchase order.
+- Missing receipt verification.
+- Tax discrepancies.
+- Incorrect supplier details.
+
+Do not automatically approve invoices simply because a bill was uploaded.
+
+### Supplier invoice statuses
+
+- Uploaded.
+- Under Review.
+- Verification Required.
+- Pending Approval.
+- Approved.
+- Partially Paid.
+- Paid.
+- Rejected.
+- Disputed.
+- On Hold.
+
+### Invoice approval
+
+Support configurable approvals:
+
+Site Manager / Project Manager review, where required.
+
+↓
+
+Procurement verification.
+
+↓
+
+Finance verification.
+
+↓
+
+Finance Head approval.
+
+↓
+
+Payment authorization.
+
+Approval stages should depend on company policy and amount thresholds.
+
+---
+
+# 15. CONTRACTOR PAYMENTS
+
+Construction companies regularly work with labour contractors and subcontractors.
+
+Create a dedicated contractor payment workspace.
+
+### Contractor records
+
+- Contractor ID.
+- Contractor name.
+- Company name.
+- Project.
+- Site.
+- Contract reference.
+- Contract type.
+- Agreed payment terms.
+- Payment milestones.
+
+### Contractor invoices
+
+Display:
+
+- Invoice ID.
+- Contractor.
+- Project.
+- Site.
+- Work category.
+- Contract reference.
+- Work completed.
+- Verified quantity.
+- Approved amount.
+- Deductions or retention.
+- Tax.
+- Net payable.
+- Payment status.
+
+### Verification workflow
+
+Contractor submits invoice.
+
+↓
+
+Site Manager verifies work completed.
+
+↓
+
+Project Manager or authorized engineer verifies quantities.
+
+↓
+
+Procurement / Accounts verifies supporting records.
+
+↓
+
+Finance approves payment.
+
+↓
+
+Authorized payment user releases funds.
+
+### Contractor payment rules
+
+Support:
+- Milestone payments.
+- Work-completion payments.
+- Quantity-based payments.
+- Retention amounts.
+- Approved advances.
+- Authorized deductions.
+
+Do not treat contractor invoices as employee payroll.
+
+Maintain separate accounting and payment histories.
+
+---
+
+# 16. EMPLOYEE REIMBURSEMENTS
+
+Create an employee reimbursement module.
+
+Employees and authorized supervisors may submit:
+
+- Travel expenses.
+- Transportation.
+- Food allowances, where applicable.
+- Accommodation.
+- Site purchases.
+- Approved miscellaneous expenses.
+
+### Reimbursement form
+
+Fields:
+
+- Employee.
+- Expense category.
+- Project.
+- Site.
+- Date.
+- Amount.
+- Payment method.
+- Business purpose.
+- Bill or receipt attachment.
+- Additional remarks.
+
+### Approval workflow
+
+Employee submits.
+
+↓
+
+Supervisor or Site Manager verifies.
+
+↓
+
+Department Manager approves, if required.
+
+↓
+
+Finance validates the invoice and amount.
+
+↓
+
+Authorized payment user releases reimbursement.
+
+Statuses:
+- Draft.
+- Submitted.
+- Under Review.
+- Pending Approval.
+- Approved.
+- Rejected.
+- Ready for Payment.
+- Paid.
+
+Prevent duplicate reimbursement claims.
+
+---
+
+# 17. SITE EXPENSE MANAGEMENT
+
+Create a central site expense management module.
+
+Categories:
+
+- Material purchases.
+- Labour expenses.
+- Transportation.
+- Equipment rental.
+- Fuel.
+- Maintenance.
+- Food and accommodation.
+- Safety equipment.
+- Site utilities.
+- Other expenses.
+
+### Expense records
+
+Display:
+
+- Expense ID.
+- Project.
+- Site.
+- Expense category.
+- Requested by.
+- Amount.
+- Date.
+- Invoice or receipt.
+- Approval status.
+- Payment status.
+
+Allow finance users to filter expenses by project and site.
+
+Show actual expense totals separately from pending or unapproved amounts.
+
+Do not count pending expenses as confirmed paid expenses.
+
+---
+
+# 18. PROJECT BUDGET MANAGEMENT
+
+Build a project finance dashboard.
+
+Each project should have:
+
+- Approved project budget.
+- Budget categories.
+- Committed expenses.
+- Approved expenses.
+- Actual payments.
+- Outstanding liabilities.
+- Remaining budget.
+- Forecast cost.
+
+### Budget categories
+
+- Labour.
+- Materials.
+- Contractors.
+- Equipment.
+- Transportation.
+- Site overhead.
+- Administration.
+- Contingency.
+- Other.
+
+### Budget vs actual
+
+Create charts comparing:
+
+- Approved budget.
+- Committed amount.
+- Approved amount.
+- Paid amount.
+- Forecast final cost.
+
+### Project finance details
+
+Display:
+
+- Project name.
+- Project manager.
+- Project budget.
+- Actual spending.
+- Outstanding payables.
+- Remaining budget.
+- Budget utilization percentage.
+
+### Alerts
+
+- Budget utilization above 70%.
+- Budget utilization above 85%.
+- Budget exceeded.
+- Unexpected cost increase.
+- High outstanding supplier balance.
+- Overdue invoices.
+
+Thresholds should be configurable.
+
+Do not automatically authorize additional spending when a budget is exceeded.
+
+---
+
+# 19. CASH FLOW MANAGEMENT
+
+Create a cash flow overview.
+
+Display:
+
+- Opening balance, where connected.
+- Inflows.
+- Outflows.
+- Expected inflows.
+- Expected outflows.
+- Supplier payables.
+- Payroll liabilities.
+- Contractor liabilities.
+- Reimbursement liabilities.
+
+Charts:
+- Monthly inflow vs outflow.
+- Weekly cash flow.
+- Upcoming payment obligations.
+- Expected collections.
+
+Clearly distinguish actual bank balances from manually entered or projected cash flow.
+
+Never invent a live bank balance.
+
+---
+
+# 20. BANK RECONCILIATION
+
+Create a bank reconciliation module.
+
+Display:
+
+- Bank account reference.
+- Statement date.
+- Imported statement records.
+- Internal transaction records.
+- Matched transactions.
+- Unmatched transactions.
+- Duplicate transactions.
+- Amount discrepancies.
+
+### Reconciliation workflow
+
+1. Import statement through supported integration or authorized file upload.
+2. Parse transactions.
+3. Match internal payment records.
+4. Review unmatched entries.
+5. Resolve discrepancies.
+6. Submit reconciliation.
+7. Approve and lock reconciliation period.
+
+Do not automatically mark unmatched payments as successful.
+
+Keep reconciliation history.
+
+---
+
+# 21. TAX AND STATUTORY COMPLIANCE
+
+Prepare the dashboard for Indian construction business accounting and payroll compliance.
+
+Support configurable records for:
+
+### Payroll compliance
+
+- EPF.
+- ESI.
+- Professional Tax.
+- Labour Welfare Fund.
+- TDS.
+- Minimum wage rules.
+- Overtime records.
+- Applicable payroll registers.
+
+### Supplier and contractor compliance
+
+- GSTIN.
+- GST invoice details.
+- Input tax records.
+- TDS on applicable payments.
+- Contractor documentation.
+- Compliance status.
+
+### Compliance workspace
+
+Display:
+- Compliance category.
+- Applicable entity.
+- Period.
+- Amount.
+- Due date.
+- Filing status.
+- Payment status.
+- Supporting document.
+- Assigned compliance officer.
+
+Important:
+
+Do not hardcode statutory tax rates, thresholds, contribution percentages or due dates.
+
+Use versioned, jurisdiction-specific compliance configuration.
+
+Tax calculations and legal requirements must be reviewed by qualified professionals.
+
+Do not present the platform as a substitute for statutory professional advice.
+
+---
+
+# 22. FINANCIAL REPORTING
+
+Build a comprehensive financial reports workspace.
+
+### Payroll reports
+
+- Monthly payroll summary.
+- Employee salary register.
+- Labour wage register.
+- Overtime report.
+- Advances report.
+- Deduction report.
+- Payment status report.
+- Project-wise labour cost.
+
+### Accounts payable reports
+
+- Supplier outstanding report.
+- Supplier payment history.
+- Contractor outstanding report.
+- Invoice aging report.
+- Payment failure report.
+- Reimbursement report.
+
+### Project reports
+
+- Project budget vs actual.
+- Site expenses.
+- Material expenditure.
+- Labour cost.
+- Contractor cost.
+- Equipment cost.
+- Project cash flow.
+
+### Financial reports
+
+- Income and expense summary.
+- Cash flow statement.
+- Accounts payable summary.
+- Accounts receivable summary, if applicable.
+- General ledger export, if supported.
+
+Provide filters:
+- Financial year.
+- Period.
+- Project.
+- Site.
+- Branch.
+- Supplier.
+- Contractor.
+- Expense category.
+
+Support CSV and PDF exports where authorized.
+
+---
+
+# 23. FINANCIAL APPROVAL CENTRE
+
+Create a centralized approval workspace.
+
+Display all pending financial actions:
+
+- Payroll approval.
+- Salary payment approval.
+- Overtime approval.
+- Advance disbursement.
+- Supplier invoice approval.
+- Contractor invoice approval.
+- Purchase bill approval.
+- Employee reimbursement approval.
+- Site expense approval.
+- Refund or adjustment approval.
+
+### Approval detail
+
+Show:
+- Request ID.
+- Requester.
+- Project.
+- Site.
+- Amount.
+- Supporting documents.
+- Previous approvals.
+- Current approval stage.
+- Approval deadline.
+- Remarks.
+
+Actions:
+- Approve.
+- Reject.
+- Request clarification.
+- Send back for correction.
+- Escalate.
+
+For every decision:
+- Capture approver.
+- Capture timestamp.
+- Capture reason.
+- Preserve previous approval history.
+
+Support amount-based approval thresholds.
+
+Example:
+- Small expenses: Finance Manager.
+- Medium invoices: Finance Manager and Project Manager.
+- High-value invoices: Finance Head and Company Admin.
+
+These are illustrative only. Company Admin configures actual thresholds.
+
+---
+
+# 24. FINANCIAL AUDIT LOGS
+
+Create an audit trail for all sensitive financial activities.
+
+Record:
+
+- Payroll calculation.
+- Payroll adjustments.
+- Salary structure changes.
+- Overtime approvals.
+- Deduction changes.
+- Invoice creation.
+- Invoice verification.
+- Invoice approval.
+- Payment creation.
+- Payment release.
+- Refunds.
+- Reconciliation.
+- Budget changes.
+- Role and permission changes.
+
+Each audit entry should contain:
+
+- Event ID.
+- User.
+- Role.
+- Timestamp.
+- Record reference.
+- Action.
+- Old value.
+- New value.
+- Reason.
+- Approval reference.
+
+Financial audit records must be append-only and protected against ordinary users modifying historical events.
+
+---
+
+# 25. INTERACTION AND FUNCTIONALITY REQUIREMENTS
+
+Every visible action must work.
+
+Implement:
+
+- Navigation.
+- Financial filters.
+- Date selectors.
+- Project and site selectors.
+- Employee search.
+- Supplier search.
+- Payroll wizard.
+- Payroll calculations.
+- Payroll exception handling.
+- Approval workflows.
+- Invoice upload.
+- Invoice verification.
+- Contractor invoice submission and review.
+- Reimbursement forms.
+- Expense forms.
+- Payment batch creation.
+- Payment status updates using mock provider responses.
+- Bank statement import interface.
+- Reconciliation workflow.
+- Payslip preview.
+- Report export.
+- Audit log filtering.
+- Confirmation dialogs.
+- Validation.
+- Loading states.
+- Empty states.
+- Error states.
+- Success states.
+
+All sample calculations must be genuinely computed using the input data, not hardcoded output values.
+
+Use mock API operations initially, but keep them modular for future backend integration.
+
+---
+
+# 26. TECHNICAL STACK
+
+Use:
+
+- React.
+- TypeScript.
+- Vite.
+- Tailwind CSS.
+- shadcn/ui.
+- Lucide React.
+- React Router.
+- TanStack Query.
+- React Hook Form.
+- Zod.
+- Zustand where appropriate.
+- Recharts.
+- Framer Motion.
+
+Suggested structure:
+
+src/
+  components/
+    layout/
+    dashboard/
+    payroll/
+    employees/
+    labour/
+    invoices/
+    contractors/
+    reimbursements/
+    expenses/
+    budgets/
+    payments/
+    approvals/
+    reports/
+    compliance/
+    audit/
+
+  pages/
+    FinanceDashboard/
+    PayrollOverview/
+    EmployeePayroll/
+    LabourWages/
+    PayrollProcessing/
+    Overtime/
+    Advances/
+    Payslips/
+    SalaryPayments/
+    SupplierInvoices/
+    ContractorPayments/
+    Reimbursements/
+    SiteExpenses/
+    ProjectBudgets/
+    CashFlow/
+    BankReconciliation/
+    Compliance/
+    Approvals/
+    Reports/
+    AuditLogs/
+    Settings/
+
+  services/
+    payrollService.ts
+    wageService.ts
+    attendanceService.ts
+    invoiceService.ts
+    contractorService.ts
+    reimbursementService.ts
+    expenseService.ts
+    budgetService.ts
+    paymentService.ts
+    reconciliationService.ts
+    approvalService.ts
+    complianceService.ts
+    auditService.ts
+
+  hooks/
+  types/
+  utils/
+  routes/
+
+Separate calculation engines from UI components.
+
+Use reusable financial formatting utilities.
+
+Use decimal-safe financial calculations. Avoid JavaScript floating-point arithmetic for currency totals.
+
+Store currency amounts using integer minor units or an appropriate decimal type.
+
+---
+
+# 27. DATABASE-READY MODELS
+
+Prepare data models for:
+
+- employee_salary_structures
+- employee_salary_history
+- wage_rate_structures
+- payroll_periods
+- payroll_runs
+- payroll_run_employees
+- payroll_earnings
+- payroll_deductions
+- payroll_exceptions
+- overtime_records
+- employee_advances
+- advance_repayments
+- payslips
+- salary_payment_batches
+- salary_payment_transactions
+- suppliers
+- supplier_invoices
+- supplier_invoice_items
+- purchase_order_references
+- material_receipt_references
+- contractor_invoices
+- contractor_payments
+- employee_reimbursements
+- site_expenses
+- project_budgets
+- budget_categories
+- financial_transactions
+- payment_approvals
+- bank_statements
+- bank_reconciliations
+- tax_compliance_records
+- approval_workflows
+- approval_records
+- financial_audit_logs
+
+Use stable IDs.
+
+Preserve historical records and effective dates.
+
+Every financial record should have appropriate company, project, site and reference relationships.
+
+---
+
+# 28. SECURITY AND FINANCIAL CONTROLS
+
+Implement:
+
+- Company-level tenant isolation.
+- Project and site financial permissions.
+- Role-based authorization.
+- Server-side permission checks.
+- Secure file uploads.
+- Private payslip access.
+- Encrypted sensitive information.
+- Audit logging.
+- Approval history.
+- Duplicate invoice detection.
+- Payment idempotency.
+- Transaction references.
+- Payroll locking.
+- Maker-checker separation.
+- Step-up authentication for sensitive operations.
+
+Never expose:
+- Full bank account credentials.
+- Payment gateway secrets.
+- Employee private salary records to unauthorized users.
+- Payslip download URLs publicly.
+- Payroll calculation data across tenants.
+
+All critical financial actions must be processed through trusted backend services or secure server functions.
+
+---
+
+# 29. FINAL ACCEPTANCE CRITERIA
+
+The finished Finance & Payroll dashboard must:
+
+1. Be a complete enterprise finance workspace.
+2. Support small, medium and large construction companies.
+3. Support configurable finance and payroll roles.
+4. Calculate monthly salary.
+5. Calculate daily and hourly wages.
+6. Support piece-rate wages.
+7. Integrate approved attendance.
+8. Support overtime and incentives.
+9. Support employee advances and deductions.
+10. Generate payslips.
+11. Separate payroll approval from salary payment.
+12. Manage supplier invoices.
+13. Manage contractor payments.
+14. Manage employee reimbursements.
+15. Manage site expenses.
+16. Support project budget monitoring.
+17. Support cash flow and reconciliation.
+18. Prepare Indian statutory compliance records.
+19. Support configurable approval workflows.
+20. Provide financial reports and audit logs.
+21. Be fully responsive.
+22. Use accurate financial calculations.
+23. Maintain strict tenant isolation.
+24. Be modular and ready for Supabase integration.
+
+## DEVELOPMENT ORDER
+
+Build the application in phases.
+
+Phase 1:
+- Application shell.
+- Finance Dashboard.
+- Payroll Overview.
+- Employee Payroll.
+- Labour Wage Management.
+
+Phase 2:
+- Payroll Processing Engine.
+- Payroll Exceptions.
+- Overtime.
+- Advances and Loans.
+- Payslips.
+- Salary Payments.
+
+Phase 3:
+- Supplier Invoices.
+- Contractor Payments.
+- Reimbursements.
+- Site Expenses.
+
+Phase 4:
+- Project Budgets.
+- Cash Flow.
+- Bank Reconciliation.
+- Tax and Compliance.
+
+Phase 5:
+- Financial Approval Centre.
+- Reports.
+- Audit Logs.
+- Settings and Permissions.
+
+Start by implementing Phase 1 with a complete responsive layout and realistic mock data. Then continue with each phase without changing the established design system.
+
+The final product should feel like a professional construction ERP finance and payroll application, not a generic accounting dashboard.

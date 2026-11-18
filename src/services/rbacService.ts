@@ -1,0 +1,505 @@
+import {
+  CompanySize,
+  FinanceRoleId,
+  FinanceUserAccount,
+  RolePermissionConfig,
+  SidebarModuleId,
+} from '../types/finance';
+
+export const ALL_MODULES: SidebarModuleId[] = [
+  'finance_dashboard',
+  'financial_overview',
+  'project_budgets',
+  'cash_flow',
+  'payroll_overview',
+  'employee_payroll',
+  'labour_wages',
+  'payroll_processing',
+  'overtime_incentives',
+  'advances_loans',
+  'payslips',
+  'salary_payments',
+  'supplier_invoices',
+  'purchase_bills',
+  'contractor_payments',
+  'reimbursements',
+  'site_expenses',
+  'payment_processing',
+  'payment_approvals',
+  'transactions',
+  'bank_reconciliation',
+  'statutory_compliance',
+  'tax_records',
+  'payroll_compliance',
+  'financial_documents',
+  'payroll_reports',
+  'expense_reports',
+  'project_cost_reports',
+  'supplier_reports',
+  'financial_statements',
+  'approval_workflows',
+  'roles_permissions',
+  'finance_settings',
+  'audit_logs',
+];
+
+export const DEFAULT_ROLE_CONFIGS: Record<FinanceRoleId, RolePermissionConfig> = {
+  company_admin: {
+    roleId: 'company_admin',
+    roleName: 'Company Admin',
+    description: 'Full organizational control over roles, workflows, limits, and final executive approvals.',
+    supportedCompanySizes: ['small', 'medium', 'large'],
+    allowedModules: ALL_MODULES,
+    canViewConfidentialSalaries: true,
+    canViewEmployeeHRRecords: true,
+    canRunPayroll: true,
+    canApprovePayroll: true,
+    canCreatePayment: true,
+    canReleasePayment: true,
+    canApproveInvoices: true,
+    canExportReports: true,
+    canProcessRefundsAdjustments: true,
+    canModifyBudgets: true,
+    paymentApprovalLimitPaise: -1,
+    invoiceApprovalLimitPaise: -1,
+    assignedProjectIds: 'ALL',
+    assignedSiteIds: 'ALL',
+  },
+  finance_head: {
+    roleId: 'finance_head',
+    roleName: 'Finance Head / CFO',
+    description: 'Enterprise financial leadership, budget oversight, high-value approvals, and treasury governance.',
+    supportedCompanySizes: ['large'],
+    allowedModules: ALL_MODULES,
+    canViewConfidentialSalaries: true,
+    canViewEmployeeHRRecords: false,
+    canRunPayroll: false,
+    canApprovePayroll: true,
+    canCreatePayment: false,
+    canReleasePayment: true,
+    canApproveInvoices: true,
+    canExportReports: true,
+    canProcessRefundsAdjustments: true,
+    canModifyBudgets: true,
+    paymentApprovalLimitPaise: -1,
+    invoiceApprovalLimitPaise: -1,
+    assignedProjectIds: 'ALL',
+    assignedSiteIds: 'ALL',
+  },
+  finance_manager: {
+    roleId: 'finance_manager',
+    roleName: 'Finance Manager',
+    description: 'Manages company-wide accounting, AP, budgets, and payroll oversight (versatile in small/medium firms).',
+    supportedCompanySizes: ['small', 'medium', 'large'],
+    allowedModules: ALL_MODULES.filter((m) => m !== 'roles_permissions'),
+    canViewConfidentialSalaries: true,
+    canViewEmployeeHRRecords: false,
+    canRunPayroll: true,
+    canApprovePayroll: true,
+    canCreatePayment: true,
+    canReleasePayment: true,
+    canApproveInvoices: true,
+    canExportReports: true,
+    canProcessRefundsAdjustments: true,
+    canModifyBudgets: true,
+    paymentApprovalLimitPaise: 250000000, // ₹25L
+    invoiceApprovalLimitPaise: 250000000,
+    assignedProjectIds: 'ALL',
+    assignedSiteIds: 'ALL',
+  },
+  payroll_manager: {
+    roleId: 'payroll_manager',
+    roleName: 'Payroll Manager',
+    description: 'Reviews and approves monthly salary and labour wage runs prior to treasury release.',
+    supportedCompanySizes: ['large'],
+    allowedModules: [
+      'finance_dashboard',
+      'payroll_overview',
+      'employee_payroll',
+      'labour_wages',
+      'payroll_processing',
+      'overtime_incentives',
+      'advances_loans',
+      'payslips',
+      'salary_payments',
+      'payroll_compliance',
+      'payroll_reports',
+      'payment_approvals',
+      'audit_logs',
+    ],
+    canViewConfidentialSalaries: true,
+    canViewEmployeeHRRecords: true,
+    canRunPayroll: true,
+    canApprovePayroll: true,
+    canCreatePayment: true,
+    canReleasePayment: false,
+    canApproveInvoices: false,
+    canExportReports: true,
+    canProcessRefundsAdjustments: true,
+    canModifyBudgets: false,
+    paymentApprovalLimitPaise: 150000000,
+    invoiceApprovalLimitPaise: 0,
+    assignedProjectIds: 'ALL',
+    assignedSiteIds: 'ALL',
+  },
+  payroll_officer: {
+    roleId: 'payroll_officer',
+    roleName: 'Payroll Officer',
+    description: 'Calculates salaries, labour wages, overtime, advances, and prepares payroll runs (cannot self-approve).',
+    supportedCompanySizes: ['medium', 'large'],
+    allowedModules: [
+      'finance_dashboard',
+      'payroll_overview',
+      'employee_payroll',
+      'labour_wages',
+      'payroll_processing',
+      'overtime_incentives',
+      'advances_loans',
+      'payslips',
+      'payroll_compliance',
+      'payroll_reports',
+    ],
+    canViewConfidentialSalaries: true,
+    canViewEmployeeHRRecords: false,
+    canRunPayroll: true,
+    canApprovePayroll: false, // Maker-checker: cannot approve own payroll
+    canCreatePayment: true,
+    canReleasePayment: false,
+    canApproveInvoices: false,
+    canExportReports: true,
+    canProcessRefundsAdjustments: false,
+    canModifyBudgets: false,
+    paymentApprovalLimitPaise: 0,
+    invoiceApprovalLimitPaise: 0,
+    assignedProjectIds: 'ALL',
+    assignedSiteIds: 'ALL',
+  },
+  accounts_payable_manager: {
+    roleId: 'accounts_payable_manager',
+    roleName: 'Accounts Payable Manager',
+    description: 'Verifies 3-way matched supplier invoices, contractor RA bills, reimbursements, and site expenses.',
+    supportedCompanySizes: ['large'],
+    allowedModules: [
+      'finance_dashboard',
+      'financial_overview',
+      'project_budgets',
+      'supplier_invoices',
+      'purchase_bills',
+      'contractor_payments',
+      'reimbursements',
+      'site_expenses',
+      'payment_approvals',
+      'tax_records',
+      'expense_reports',
+      'supplier_reports',
+    ],
+    canViewConfidentialSalaries: false, // Restricted from confidential employee salaries
+    canViewEmployeeHRRecords: false,
+    canRunPayroll: false,
+    canApprovePayroll: false,
+    canCreatePayment: true,
+    canReleasePayment: false,
+    canApproveInvoices: true,
+    canExportReports: true,
+    canProcessRefundsAdjustments: false,
+    canModifyBudgets: false,
+    paymentApprovalLimitPaise: 100000000, // ₹10L
+    invoiceApprovalLimitPaise: 150000000, // ₹15L
+    assignedProjectIds: 'ALL',
+    assignedSiteIds: 'ALL',
+  },
+  accounts_executive: {
+    roleId: 'accounts_executive',
+    roleName: 'Accounts Executive',
+    description: 'Handles daily bill entry, site expenses, reimbursements, and bank statement matching.',
+    supportedCompanySizes: ['medium'],
+    allowedModules: [
+      'finance_dashboard',
+      'supplier_invoices',
+      'purchase_bills',
+      'contractor_payments',
+      'reimbursements',
+      'site_expenses',
+      'transactions',
+      'bank_reconciliation',
+      'expense_reports',
+    ],
+    canViewConfidentialSalaries: false,
+    canViewEmployeeHRRecords: false,
+    canRunPayroll: false,
+    canApprovePayroll: false,
+    canCreatePayment: true,
+    canReleasePayment: false,
+    canApproveInvoices: false,
+    canExportReports: false,
+    canProcessRefundsAdjustments: false,
+    canModifyBudgets: false,
+    paymentApprovalLimitPaise: 0,
+    invoiceApprovalLimitPaise: 0,
+    assignedProjectIds: 'ALL',
+    assignedSiteIds: 'ALL',
+  },
+  procurement_accounts: {
+    roleId: 'procurement_accounts',
+    roleName: 'Procurement Accounts Executive',
+    description: 'Performs PO/GRN three-way invoice verification and tracks supplier ledgers.',
+    supportedCompanySizes: ['medium'],
+    allowedModules: [
+      'finance_dashboard',
+      'supplier_invoices',
+      'purchase_bills',
+      'contractor_payments',
+      'site_expenses',
+      'supplier_reports',
+      'financial_documents',
+    ],
+    canViewConfidentialSalaries: false,
+    canViewEmployeeHRRecords: false,
+    canRunPayroll: false,
+    canApprovePayroll: false,
+    canCreatePayment: false,
+    canReleasePayment: false,
+    canApproveInvoices: false,
+    canExportReports: true,
+    canProcessRefundsAdjustments: false,
+    canModifyBudgets: false,
+    paymentApprovalLimitPaise: 0,
+    invoiceApprovalLimitPaise: 25000000, // ₹2.5L
+    assignedProjectIds: 'ALL',
+    assignedSiteIds: 'ALL',
+  },
+  project_accountant: {
+    roleId: 'project_accountant',
+    roleName: 'Project Accountant',
+    description: 'Monitors project budgets, site expenses, labour cost allocations, and contractor BOQ bills.',
+    supportedCompanySizes: ['large'],
+    allowedModules: [
+      'finance_dashboard',
+      'financial_overview',
+      'project_budgets',
+      'labour_wages',
+      'contractor_payments',
+      'site_expenses',
+      'project_cost_reports',
+      'expense_reports',
+    ],
+    canViewConfidentialSalaries: false,
+    canViewEmployeeHRRecords: false,
+    canRunPayroll: false,
+    canApprovePayroll: false,
+    canCreatePayment: false,
+    canReleasePayment: false,
+    canApproveInvoices: false,
+    canExportReports: true,
+    canProcessRefundsAdjustments: false,
+    canModifyBudgets: false,
+    paymentApprovalLimitPaise: 0,
+    invoiceApprovalLimitPaise: 50000000,
+    assignedProjectIds: ['proj_skyrise', 'proj_pune_metro'],
+    assignedSiteIds: 'ALL',
+  },
+  treasury_officer: {
+    roleId: 'treasury_officer',
+    roleName: 'Treasury / Payment Officer',
+    description: 'Executes approved payment batches, manages cash flow, and reconciles bank statements.',
+    supportedCompanySizes: ['large'],
+    allowedModules: [
+      'finance_dashboard',
+      'cash_flow',
+      'salary_payments',
+      'payment_processing',
+      'transactions',
+      'bank_reconciliation',
+      'financial_statements',
+    ],
+    canViewConfidentialSalaries: false, // Sees batch totals/net payout, not full salary breakdowns
+    canViewEmployeeHRRecords: false,
+    canRunPayroll: false,
+    canApprovePayroll: false,
+    canCreatePayment: false,
+    canReleasePayment: true,
+    canApproveInvoices: false,
+    canExportReports: true,
+    canProcessRefundsAdjustments: false,
+    canModifyBudgets: false,
+    paymentApprovalLimitPaise: 500000000, // ₹50L release limit
+    invoiceApprovalLimitPaise: 0,
+    assignedProjectIds: 'ALL',
+    assignedSiteIds: 'ALL',
+  },
+  compliance_officer: {
+    roleId: 'compliance_officer',
+    roleName: 'Tax & Compliance Officer',
+    description: 'Manages EPF, ESI, PT, TDS, GST input tax records, and statutory filing deadlines.',
+    supportedCompanySizes: ['large'],
+    allowedModules: [
+      'finance_dashboard',
+      'statutory_compliance',
+      'tax_records',
+      'payroll_compliance',
+      'financial_documents',
+      'financial_statements',
+      'audit_logs',
+    ],
+    canViewConfidentialSalaries: false,
+    canViewEmployeeHRRecords: false,
+    canRunPayroll: false,
+    canApprovePayroll: false,
+    canCreatePayment: false,
+    canReleasePayment: false,
+    canApproveInvoices: false,
+    canExportReports: true,
+    canProcessRefundsAdjustments: false,
+    canModifyBudgets: false,
+    paymentApprovalLimitPaise: 0,
+    invoiceApprovalLimitPaise: 0,
+    assignedProjectIds: 'ALL',
+    assignedSiteIds: 'ALL',
+  },
+  internal_auditor: {
+    roleId: 'internal_auditor',
+    roleName: 'Internal Auditor',
+    description: 'Read-only oversight across transactions, reconciliations, approvals, and immutable audit logs.',
+    supportedCompanySizes: ['large'],
+    allowedModules: [
+      'finance_dashboard',
+      'financial_overview',
+      'project_budgets',
+      'transactions',
+      'bank_reconciliation',
+      'statutory_compliance',
+      'tax_records',
+      'financial_documents',
+      'payroll_reports',
+      'expense_reports',
+      'project_cost_reports',
+      'supplier_reports',
+      'financial_statements',
+      'audit_logs',
+    ],
+    canViewConfidentialSalaries: false,
+    canViewEmployeeHRRecords: false,
+    canRunPayroll: false,
+    canApprovePayroll: false,
+    canCreatePayment: false,
+    canReleasePayment: false,
+    canApproveInvoices: false,
+    canExportReports: true,
+    canProcessRefundsAdjustments: false,
+    canModifyBudgets: false,
+    paymentApprovalLimitPaise: 0,
+    invoiceApprovalLimitPaise: 0,
+    assignedProjectIds: 'ALL',
+    assignedSiteIds: 'ALL',
+  },
+  hr_executive: {
+    roleId: 'hr_executive',
+    roleName: 'HR Executive / Manager',
+    description: 'Oversees employee attendance, overtime verification, advances, and payslip access.',
+    supportedCompanySizes: ['small', 'medium'],
+    allowedModules: [
+      'finance_dashboard',
+      'payroll_overview',
+      'employee_payroll',
+      'labour_wages',
+      'overtime_incentives',
+      'advances_loans',
+      'payslips',
+      'reimbursements',
+      'payroll_compliance',
+    ],
+    canViewConfidentialSalaries: true,
+    canViewEmployeeHRRecords: true,
+    canRunPayroll: false,
+    canApprovePayroll: false,
+    canCreatePayment: false,
+    canReleasePayment: false,
+    canApproveInvoices: false,
+    canExportReports: true,
+    canProcessRefundsAdjustments: false,
+    canModifyBudgets: false,
+    paymentApprovalLimitPaise: 0,
+    invoiceApprovalLimitPaise: 0,
+    assignedProjectIds: 'ALL',
+    assignedSiteIds: 'ALL',
+  },
+};
+
+export function getRolesForCompanySize(size: CompanySize): RolePermissionConfig[] {
+  return Object.values(DEFAULT_ROLE_CONFIGS).filter((r) =>
+    r.supportedCompanySizes.includes(size)
+  );
+}
+
+export function canAccessModule(
+  roleConfig: RolePermissionConfig,
+  moduleId: SidebarModuleId
+): boolean {
+  return roleConfig.allowedModules.includes(moduleId);
+}
+
+export interface MakerCheckerCheck {
+  allowed: boolean;
+  reason?: string;
+}
+
+export function checkMakerChecker(
+  currentUser: FinanceUserAccount,
+  roleConfig: RolePermissionConfig,
+  creatorUserId: string,
+  actionType: 'approve_payroll' | 'release_payment' | 'approve_invoice',
+  amountPaise: number,
+  makerCheckerEnabled = true
+): MakerCheckerCheck {
+  if (makerCheckerEnabled && creatorUserId === currentUser.id && roleConfig.roleId !== 'company_admin') {
+    return {
+      allowed: false,
+      reason: 'Maker-checker control: You created this record and cannot approve or release it yourself.',
+    };
+  }
+
+  if (actionType === 'approve_payroll' && !roleConfig.canApprovePayroll) {
+    return {
+      allowed: false,
+      reason: `${roleConfig.roleName} does not have payroll approval permission.`,
+    };
+  }
+
+  if (actionType === 'release_payment') {
+    if (!roleConfig.canReleasePayment) {
+      return {
+        allowed: false,
+        reason: `${roleConfig.roleName} is not authorized to release bank payments.`,
+      };
+    }
+    if (
+      roleConfig.paymentApprovalLimitPaise !== -1 &&
+      amountPaise > roleConfig.paymentApprovalLimitPaise
+    ) {
+      return {
+        allowed: false,
+        reason: `Amount exceeds your payment release limit.`,
+      };
+    }
+  }
+
+  if (actionType === 'approve_invoice') {
+    if (!roleConfig.canApproveInvoices) {
+      return {
+        allowed: false,
+        reason: `${roleConfig.roleName} does not have invoice approval permission.`,
+      };
+    }
+    if (
+      roleConfig.invoiceApprovalLimitPaise !== -1 &&
+      amountPaise > roleConfig.invoiceApprovalLimitPaise
+    ) {
+      return {
+        allowed: false,
+        reason: `Invoice exceeds your approval threshold and requires escalation.`,
+      };
+    }
+  }
+
+  return { allowed: true };
+}

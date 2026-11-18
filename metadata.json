@@ -1,0 +1,6 @@
+{
+  "name": "BuildFlow Finance & Payroll",
+  "description": "Enterprise construction finance, payroll processing, labour wage calculation, accounts payable, project budgets, and statutory compliance platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
